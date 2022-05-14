@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Text, FlatList, View } from "react-native";
+import { Text, FlatList, View, StyleSheet } from "react-native";
 import NavBar from "../../components/NavBar";
 import PlusButton from "./components/PlusButton";
 
 import { getData } from '../../../App';
 
-
+import Card from '../../components/Card';
 
 export default function AFazer({route, navigation})
 {
@@ -42,7 +42,7 @@ export default function AFazer({route, navigation})
           <View>
             <FlatList
               data={cardsList}
-              renderItem={({item}) => <Text>{item.Nome}</Text>}
+              renderItem={({item}) => <Card titulo={item.Nome} descricao={item.Descricao}/>}
             />
           </View>
         );
@@ -50,8 +50,14 @@ export default function AFazer({route, navigation})
     return <>
         <NavBar navigation={navigation}/>
         <Text>A Fazer</Text>
-        <Text>{listaAFazer}</Text>
-        <FlatListBasics/>
+        
+            <FlatListBasics/>
+        
         <PlusButton navigation={navigation}/>
     </>
 }
+
+const style = StyleSheet.create({
+    flatList: {
+    }
+})
