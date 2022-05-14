@@ -1,7 +1,7 @@
-import {SafeAreaView} from "react-native";
+import React, { useState } from 'react';
+import { SafeAreaView } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Text } from "react-native";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -29,7 +29,6 @@ export const getData = async (key) => {
 }
 
 export default function App() {
-  getData("listaAFazer").then((t) => console.log(t))
   return (
     <SafeAreaView>
       <NavigationContainer>

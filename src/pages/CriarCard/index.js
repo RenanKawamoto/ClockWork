@@ -6,6 +6,7 @@ import { storeData, getData } from "../../../App";
 export default function CriarCard({navigation})
 {
     const [nome, onChangeNome] = React.useState("");
+    const [descricao, onChangeDescricao] = React.useState("");
     return <>
         <Bar/>
         <Text>CriarCard</Text>
@@ -14,19 +15,23 @@ export default function CriarCard({navigation})
             placeholder="Nome da atividade"
             value={nome}
         />
+        <TextInput
+            onChangeText={onChangeDescricao}
+            placeholder="Descricao da atividade"
+            value={descricao}
+        />
 
         <Button title="Criar" onPress={
             () => {
                 getData("listaAFazer").then((result) => {
-                    if(result == null)
+                    var resultJSON = {"lista": []}
+                    if(result != null)
                     {
-                        var listaAFazerSemTarefas = JSON.stringify({"lista":[]})
-                        storeData("listaAFazer", listaAFazerSemTarefas);
-                        return;
+                        var resultJSON = JSON.parse(result)
                     }
-                    var resultJSON = JSON.parse(result)
-                    resultJSON["lista"].push({"Nome": nome, "CheckBox": false, "Checks": []})
+                    resultJSON["lista"].push({"Nome": nome, "Descricao": descricao, "CheckBox": false, "Checks": []})
                     storeData("listaAFazer", JSON.stringify(resultJSON))
+                    navigation.navigate("AFazer", {created: true, valorCriado: JSON.stringify(resultJSON)})
                 })
             }
         }></Button>
