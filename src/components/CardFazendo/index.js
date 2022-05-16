@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 
-export default function Card({ titulo, descricao, navigation })
+export default function CardFazendo({ titulo, descricao, navigation })
 {
     var desc = descricao;
     if(descricao.length > 30)
@@ -12,14 +12,17 @@ export default function Card({ titulo, descricao, navigation })
         <Text style={style.titulo}>{titulo}</Text>
         <Text style={style.descricao}>{desc}</Text>
         <View style={style.viewButtons}>
-            <TouchableOpacity style={style.button} onPress={() => navigation.navigate('AFazer', {deleteAFazerCard: true, titulo: titulo}) }>
+            <TouchableOpacity style={style.button} onPress={() => navigation.navigate('Fazendo', {deleteFazendoCard: true, titulo: titulo}) }>
                 <Text style={style.excluir}>Excluir</Text>
             </TouchableOpacity>
             <TouchableOpacity style={style.button}>
                 <Text>Editar</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={style.button} onPress={() => navigation.navigate('AFazer', {aFazerParaFazendo: true, titulo: titulo, descricao: descricao})}>
-                <Text>Fazendo</Text>
+            <TouchableOpacity style={style.button}>
+                <Text>A Fazer</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={style.button}>
+                <Text>Feito</Text>
             </TouchableOpacity>
         </View>
     </View>
@@ -56,7 +59,7 @@ const style = StyleSheet.create({
         flexDirection: "row"
     },
     button: {
-        width: "33.33%",
+        width: "25%",
         textAlign: "right",
         padding: 10
     },

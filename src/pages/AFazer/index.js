@@ -9,7 +9,7 @@ import Card from '../../components/Card';
 
 export default function AFazer({route, navigation})
 {
-    const created = route.params;
+    const parametrosDaRota = route.params;
     const [listaAFazer, setListaAFazer] = useState([]);
     getData("listaAFazer").then((result) => {
         if(result !== null)
@@ -17,30 +17,45 @@ export default function AFazer({route, navigation})
             setListaAFazer(result);
         }
     })
-    if(created != undefined)
+    if(parametrosDaRota != undefined)
     {
-        if(created['created'])
+        if(parametrosDaRota['parametrosDaRota'])
         {        
             getData("listaAFazer").then((result) => {
                 if(result !== null)
                 {
-                    setListaAFazer(created['valorCriado']);       
+                    setListaAFazer(parametrosDaRota['valorCriado']);       
                 }
             })            
         }
-        if(created['deleteAFazerCard'])
+        if(parametrosDaRota['deleteAFazerCard'])
         {
             getData("listaAFazer").then((result) => {
                 var lista = JSON.parse(result).lista;
                 for(var i = 0; i < lista.length; i++)
                 {
-                    if(lista[i].Nome == created['titulo'])    
+                    if(lista[i].Nome == parametrosDaRota['titulo'])    
                     {
                         lista.splice(i, 1)
                     }
                 }
                 storeData("listaAFazer", JSON.stringify({lista: lista}))
                 navigation.navigate('AFazer')
+            })
+        }
+        if(parametrosDaRota['aFazerParaFazendo'])
+        {
+            getData("listaAFazer").then((result) => {
+                var lista = JSON.parse(result).lista;
+                for(var i = 0; i < lista.length; i++)
+                {
+                    if(lista[i].Nome == parametrosDaRota['titulo'])    
+                    {
+                        lista.splice(i, 1)
+                    }
+                }
+                storeData("listaAFazer", JSON.stringify({lista: lista}))
+                navigation.navigate('Fazendo', {aFazerParaFazendo: true, titulo: parametrosDaRota['titulo'], descricao: parametrosDaRota['descricao']})
             })
         }
     }
