@@ -47,6 +47,19 @@ export default function AFazer({route, navigation})
                 navigation.navigate('AFazer')
             })
         }
+        if(parametrosDaRota['fazendoParaAfazer'])
+        {        
+            getData("listaAFazer").then((result) => {
+                var lista = []
+                if(JSON.parse(result) != null)
+                {
+                    lista = JSON.parse(result).lista;
+                }
+                lista.unshift({Nome: parametrosDaRota['titulo'], Descricao: parametrosDaRota['descricao']});
+                storeData("listaAFazer", JSON.stringify({lista: lista}))
+                navigation.navigate('Fazendo')
+            })         
+        }
         if(parametrosDaRota['aFazerParaFazendo'])
         {
             getData("listaAFazer").then((result) => {

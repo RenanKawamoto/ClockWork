@@ -18,7 +18,7 @@ export default function CardFazendo({ titulo, descricao, navigation })
             <TouchableOpacity style={style.button}>
                 <Text>Editar</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={style.button}>
+            <TouchableOpacity style={style.button} onPress={() => navigation.navigate('Fazendo', {fazendoParaAfazer: true, titulo: titulo, descricao: descricao})}>
                 <Text>A Fazer</Text>
             </TouchableOpacity>
             <TouchableOpacity style={style.button} onPress={() => navigation.navigate('Fazendo', {fazendoParaFeito: true, titulo: titulo, descricao: descricao})}>

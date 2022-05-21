@@ -12,14 +12,14 @@ export default function CardFazendo({ titulo, descricao, navigation })
         <Text style={style.titulo}>{titulo}</Text>
         <Text style={style.descricao}>{desc}</Text>
         <View style={style.viewButtons}>
+            <TouchableOpacity style={style.button} onPress={() => navigation.navigate('Feito', {feitoParaFazendo: true, titulo: titulo, descricao: descricao}) }>
+                <Text>Fazendo</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={style.button} onPress={() => navigation.navigate('Feito', {deleteFeitoCard: true, titulo: titulo}) }>
                 <Text style={style.excluir}>Excluir</Text>
             </TouchableOpacity>
             <TouchableOpacity style={style.button}>
                 <Text>Editar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={style.button}>
-                <Text>Fazendo</Text>
             </TouchableOpacity>
         </View>
     </View>

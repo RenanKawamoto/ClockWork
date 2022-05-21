@@ -35,6 +35,25 @@ export default function Feito({route, navigation})
                 navigation.navigate('Fazendo')
             })         
         }
+        if(parametrosDaRota['feitoParaFazendo'])
+        {
+            getData("listaFeito").then((result) => {
+                var lista = []
+                if(JSON.parse(result) != null)
+                {
+                    lista = JSON.parse(result).lista;
+                }
+                for(var i = 0; i < lista.length; i++)
+                {
+                    if(lista[i].Nome == parametrosDaRota['titulo'])    
+                    {
+                        lista.splice(i, 1)
+                    }
+                }
+                storeData("listaFeito", JSON.stringify({lista: lista}))
+                navigation.navigate('Fazendo', {feitoParaFazendo: true, titulo: parametrosDaRota['titulo'], descricao: parametrosDaRota['descricao']})
+            })
+        }
         if(parametrosDaRota['deleteFeitoCard'])
         {
             getData("listaFeito").then((result) => {
