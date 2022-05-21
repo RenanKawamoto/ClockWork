@@ -31,7 +31,11 @@ export default function AFazer({route, navigation})
         if(parametrosDaRota['deleteAFazerCard'])
         {
             getData("listaAFazer").then((result) => {
-                var lista = JSON.parse(result).lista;
+                var lista = []
+                if(JSON.parse(result) != null)
+                {
+                    lista = JSON.parse(result).lista;
+                }
                 for(var i = 0; i < lista.length; i++)
                 {
                     if(lista[i].Nome == parametrosDaRota['titulo'])    
@@ -46,7 +50,11 @@ export default function AFazer({route, navigation})
         if(parametrosDaRota['aFazerParaFazendo'])
         {
             getData("listaAFazer").then((result) => {
-                var lista = JSON.parse(result).lista;
+                var lista = []
+                if(JSON.parse(result) != null)
+                {
+                    lista = JSON.parse(result).lista;
+                }
                 for(var i = 0; i < lista.length; i++)
                 {
                     if(lista[i].Nome == parametrosDaRota['titulo'])    

@@ -17,17 +17,38 @@ export default function Fazendo({route, navigation})
         }
         else
         {
-            console.log("AQuiiiii")
             storeData("listaFazendo", JSON.stringify({lista: []}));
         }
     })
     if(parametrosDaRota != undefined)
     {
+        if(parametrosDaRota['fazendoParaFeito'])
+        {
+            getData("listaFazendo").then((result) => {
+                var lista = []
+                if(JSON.parse(result) != null)
+                {
+                    lista = JSON.parse(result).lista;
+                }
+                for(var i = 0; i < lista.length; i++)
+                {
+                    if(lista[i].Nome == parametrosDaRota['titulo'])    
+                    {
+                        lista.splice(i, 1)
+                    }
+                }
+                storeData("listaFazendo", JSON.stringify({lista: lista}))
+                navigation.navigate('Feito', {fazendoParaFeito: true, titulo: parametrosDaRota['titulo'], descricao: parametrosDaRota['descricao']})
+            })
+        }
         if(parametrosDaRota['aFazerParaFazendo'])
         {        
             getData("listaFazendo").then((result) => {
-                console.log(JSON.parse(result))
-                var lista = JSON.parse(result).lista;
+                var lista = []
+                if(JSON.parse(result) != null)
+                {
+                    lista = JSON.parse(result).lista;
+                }
                 lista.unshift({Nome: parametrosDaRota['titulo'], Descricao: parametrosDaRota['descricao']});
                 storeData("listaFazendo", JSON.stringify({lista: lista}))
                 navigation.navigate('AFazer')
