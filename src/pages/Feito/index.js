@@ -93,8 +93,7 @@ export default function Feito({route, navigation})
         );
     }
     return <>
-        <NavBar navigation={navigation}/>
-        <Text>Feito</Text>
+        <NavBar navigation={navigation} aba={route.name}/>
         <FlatListBasics/>
     </>
 }

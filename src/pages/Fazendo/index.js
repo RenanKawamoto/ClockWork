@@ -121,8 +121,7 @@ export default function Fazendo({route, navigation})
         );
     }
     return <>
-        <NavBar navigation={navigation}/>
-        <Text>Fazendo</Text>
+        <NavBar navigation={navigation} aba={route.name}/>
         <FlatListBasics/>
     </>
 }

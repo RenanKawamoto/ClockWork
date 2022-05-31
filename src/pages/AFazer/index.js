@@ -99,8 +99,7 @@ export default function AFazer({route, navigation})
         );
     }
     return <>
-        <NavBar navigation={navigation}/>
-        <Text>A Fazer</Text>
+        <NavBar navigation={navigation} aba={route.name}/>
         <FlatListBasics/>
         <PlusButton navigation={navigation}/>
     </>

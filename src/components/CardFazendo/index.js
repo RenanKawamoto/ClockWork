@@ -35,7 +35,7 @@ const style = StyleSheet.create({
         height: 130,
         padding: 15,
         borderRadius: 15,
-        marginTop: 10,
+        marginTop: 40,
         marginBottom: 10
     },
     titulo: {
