@@ -15,9 +15,6 @@ export default function CardFazendo({ titulo, descricao, navigation })
             <TouchableOpacity style={style.button} onPress={() => navigation.navigate('Fazendo', {deleteFazendoCard: true, titulo: titulo}) }>
                 <Text style={style.excluir}>Excluir</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={style.button}>
-                <Text>Editar</Text>
-            </TouchableOpacity>
             <TouchableOpacity style={style.button} onPress={() => navigation.navigate('Fazendo', {fazendoParaAfazer: true, titulo: titulo, descricao: descricao})}>
                 <Text>A Fazer</Text>
             </TouchableOpacity>
@@ -59,7 +56,7 @@ const style = StyleSheet.create({
         flexDirection: "row"
     },
     button: {
-        width: "25%",
+        width: "33.33%",
         textAlign: "right",
         padding: 10
     },

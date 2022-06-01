@@ -10,7 +10,7 @@ export default function NavBar({navigation, aba})
                 width: "33.33%",
                 padding: 15,
                 textAlign: "center",
-                shadowColor: '#FFFF00',
+                shadowColor: "#F8CC1D",
                 shadowOffset: {width: 0, height: 5},
                 shadowOpacity: 1,
                 shadowRadius: 0,
@@ -40,7 +40,7 @@ export default function NavBar({navigation, aba})
                 width: "33.33%",
                 padding: 15,
                 textAlign: "center",
-                shadowColor: '#FFFF00',
+                shadowColor: "#F8CC1D",
                 shadowOffset: {width: 0, height: 5},
                 shadowOpacity: 1,
                 shadowRadius: 0,
@@ -71,7 +71,7 @@ export default function NavBar({navigation, aba})
                     width: "33.33%",
                     padding: 15,
                     textAlign: "center",
-                    shadowColor: '#FFFF00',
+                    shadowColor: "#F8CC1D",
                     shadowOffset: {width: 0, height: 5},
                     shadowOpacity: 1,
                     shadowRadius: 0,
@@ -95,22 +95,6 @@ export default function NavBar({navigation, aba})
             </View>
         }
     }
-    return <View style={style.view}>
-        <Text style={style.title}>
-            Clock Work
-        </Text>
-        <View style={style.viewButtons}>
-            <TouchableOpacity onPress={()=> navigation.navigate('AFazer')} style={style.button}>
-                <Text style={style.textButton}>A Fazer</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=> navigation.navigate('Fazendo')} style={style.button}>
-                <Text style={style.textButton}>Fazendo</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=> navigation.navigate('Feito')} style={style.button}>
-                <Text style={style.textButton}>Feito</Text>
-            </TouchableOpacity>
-        </View>
-    </View>
 }
 
 export const style = StyleSheet.create({
