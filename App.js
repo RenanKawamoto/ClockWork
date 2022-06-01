@@ -9,6 +9,7 @@ import AFazer from './src/pages/AFazer';
 import Fazendo from './src/pages/Fazendo';
 import Feito from './src/pages/Feito';
 import CriarCard from './src/pages/CriarCard';
+import AlterarCard from './src/pages/AlterarCard';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,7 @@ export default function App() {
           <Stack.Screen name="Fazendo" component={Fazendo}/>
           <Stack.Screen name="Feito" component={Feito}/>
           <Stack.Screen name="CriarCard" component={CriarCard}/>
+          <Stack.Screen name="AlterarCard" component={AlterarCard}/>
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

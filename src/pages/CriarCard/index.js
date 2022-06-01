@@ -29,7 +29,7 @@ export default function CriarCard({navigation})
                     {
                         var resultJSON = JSON.parse(result)
                     }
-                    resultJSON["lista"].push({"Nome": nome, "Descricao": descricao, "CheckBox": false, "Checks": []})
+                    resultJSON["lista"].push({"Nome": nome, "Descricao": descricao})
                     storeData("listaAFazer", JSON.stringify(resultJSON))
                     navigation.navigate("AFazer", {created: true, valorCriado: JSON.stringify(resultJSON)})
                 })

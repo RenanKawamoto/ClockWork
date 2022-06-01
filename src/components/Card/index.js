@@ -15,7 +15,7 @@ export default function Card({ titulo, descricao, navigation })
             <TouchableOpacity style={style.button} onPress={() => navigation.navigate('AFazer', {deleteAFazerCard: true, titulo: titulo}) }>
                 <Text style={style.excluir}>Excluir</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={style.button}>
+            <TouchableOpacity style={style.button} onPress={()=> navigation.navigate('AlterarCard', {rota: "AFazer", titulo: titulo, descricaoAntiga: descricao})}>
                 <Text>Editar</Text>
             </TouchableOpacity>
             <TouchableOpacity style={style.button} onPress={() => navigation.navigate('AFazer', {aFazerParaFazendo: true, titulo: titulo, descricao: descricao})}>
