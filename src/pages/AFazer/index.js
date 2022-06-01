@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, FlatList, View, StyleSheet } from "react-native";
 import NavBar from "../../components/NavBar";
 import PlusButton from "./components/PlusButton";
+import { useWindowDimensions} from "react-native";
 
 import { getData, storeData } from '../../../App';
 
@@ -9,6 +10,7 @@ import Card from '../../components/Card';
 
 export default function AFazer({route, navigation})
 {
+    const { height, width } = useWindowDimensions();
     const parametrosDaRota = route.params;
     const [listaAFazer, setListaAFazer] = useState([]);
     getData("listaAFazer").then((result) => {
@@ -91,21 +93,23 @@ export default function AFazer({route, navigation})
     const FlatListBasics = () => {
         return (
           <View>
-            <FlatList
+            <FlatList 
+                style={style.flatList}
               data={cardsList}
               renderItem={({item}) => <Card titulo={item.Nome} descricao={item.Descricao} navigation={navigation}/>}
             />
+            <PlusButton navigation={navigation}/>
           </View>
         );
     }
+    const style = StyleSheet.create({
+        flatList: {
+            height: height - 100
+        }
+    })
     return <>
         <NavBar navigation={navigation} aba={route.name}/>
-        <FlatListBasics/>
-        <PlusButton navigation={navigation}/>
+        <FlatListBasics />
     </>
 }
 
-const style = StyleSheet.create({
-    flatList: {
-    }
-})
