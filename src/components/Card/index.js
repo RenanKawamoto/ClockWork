@@ -9,17 +9,19 @@ export default function Card({ titulo, descricao, navigation })
         desc = descricao.substring(0,30) + "...";
     }
     return <View style={[style.view, style.shadowProps]}>
-        <Text style={style.titulo}>{titulo}</Text>
-        <Text style={style.descricao}>{desc}</Text>
+        <View style={style.tituloEDescricaoView}>
+            <Text style={style.titulo}>{titulo}</Text>
+            <Text style={style.descricao}>{desc}</Text>
+        </View>
         <View style={style.viewButtons}>
-            <TouchableOpacity style={style.button} onPress={() => navigation.navigate('AFazer', {deleteAFazerCard: true, titulo: titulo}) }>
+            <TouchableOpacity style={[style.button, style.left]} onPress={() => navigation.navigate('AFazer', {deleteAFazerCard: true, titulo: titulo}) }>
                 <Text style={style.excluir}>Excluir</Text>
             </TouchableOpacity>
             <TouchableOpacity style={style.button} onPress={()=> navigation.navigate('AlterarCard', {rota: "AFazer", titulo: titulo, descricaoAntiga: descricao})}>
-                <Text>Editar</Text>
+                <Text style={style.texto}>Editar</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={style.button} onPress={() => navigation.navigate('AFazer', {aFazerParaFazendo: true, titulo: titulo, descricao: descricao})}>
-                <Text>Fazendo</Text>
+            <TouchableOpacity style={[style.button, style.right]} onPress={() => navigation.navigate('AFazer', {aFazerParaFazendo: true, titulo: titulo, descricao: descricao})}>
+                <Text style={style.texto}>Fazendo</Text>
             </TouchableOpacity>
         </View>
     </View>
@@ -29,15 +31,18 @@ const style = StyleSheet.create({
     view: {
         alignSelf: "center",
         width: "90%",
-        height: 130,
-        padding: 15,
+        height: 144,
         borderRadius: 15,
         marginTop: 40,
         marginBottom: 10
     },
+    tituloEDescricaoView: {
+        width: "100%",
+        padding: 15
+    },  
     titulo: {
         fontSize: 24,
-        fontWeight: "bold"
+        fontWeight: "bold",
     },
     descricao: {
         fontSize: 15,
@@ -52,15 +57,34 @@ const style = StyleSheet.create({
     },
     viewButtons: {
         width: "100%",
-        alignSelf: "right",
-        flexDirection: "row"
+        flexDirection: "row",
+        alignItems: "center"
     },
     button: {
         width: "33.33%",
-        textAlign: "right",
-        padding: 10
+        padding: 13,
+        backgroundColor: "#3557BD",
+    },
+    left: {
+        borderBottomLeftRadius: 10,
+        backgroundColor: "#FF4444",
+        borderColor: "#303030",
+        borderRightWidth: 1
+    },
+    right: {
+        borderBottomRightRadius: 10,
+        backgroundColor: "#3557BD",
+        borderColor: "#303030",
+        borderLeftWidth: 1
+    },
+    texto: {
+        alignSelf: "center",
+        fontWeight: "bold",
+        color: "white"
     },
     excluir: {
-        color: "red"
+        color: "white",
+        fontWeight: "bold",
+        alignSelf: "center"
     }
 });

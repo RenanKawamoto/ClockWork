@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Text, View, FlatList } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import NavBar from "../../components/NavBar";
+import { useWindowDimensions} from "react-native";
 
 import { getData, storeData } from '../../../App';
 
@@ -10,6 +11,12 @@ export default function Feito({route, navigation})
 {
     const parametrosDaRota = route.params;
     const [listaFeito, setListaFeito] = useState({lista:[]});
+    const { height, width } = useWindowDimensions();
+    const style = StyleSheet.create({
+        flatList: {
+            height: height - 100
+        }
+    })
     getData("listaFeito").then((result) => {
         if(result !== null)
         {

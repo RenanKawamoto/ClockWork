@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, FlatList, View, StyleSheet } from "react-native";
+import { FlatList, View, StyleSheet } from "react-native";
 import NavBar from "../../components/NavBar";
 import PlusButton from "./components/PlusButton";
 import { useWindowDimensions} from "react-native";

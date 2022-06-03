@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Text, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
+import { useWindowDimensions} from "react-native";
 import NavBar from "../../components/NavBar";
 
 import { getData, storeData } from '../../../App';
@@ -8,6 +9,12 @@ import Card from '../../components/CardFazendo';
 
 export default function Fazendo({route, navigation})
 {
+    const { height, width } = useWindowDimensions();
+    const style = StyleSheet.create({
+        flatList: {
+            height: height - 100
+        }
+    })
     const parametrosDaRota = route.params;
     const [listaFazendo, setListaFazendo] = useState({lista:[]});
     getData("listaFazendo").then((result) => {
@@ -122,6 +129,7 @@ export default function Fazendo({route, navigation})
     }
     return <>
         <NavBar navigation={navigation} aba={route.name}/>
-        <FlatListBasics/>
+        <FlatListBasics style={style.flatList}/>
     </>
 }
+

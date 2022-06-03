@@ -9,17 +9,19 @@ export default function CardFazendo({ titulo, descricao, navigation })
         desc = descricao.substring(0,30) + "...";
     }
     return <View style={[style.view, style.shadowProps]}>
-        <Text style={style.titulo}>{titulo}</Text>
-        <Text style={style.descricao}>{desc}</Text>
+        <View style={style.tituloEDescricaoView}>
+            <Text style={style.titulo}>{titulo}</Text>
+            <Text style={style.descricao}>{desc}</Text>
+        </View>
         <View style={style.viewButtons}>
-            <TouchableOpacity style={style.button} onPress={() => navigation.navigate('Fazendo', {deleteFazendoCard: true, titulo: titulo}) }>
+            <TouchableOpacity style={[style.button, style.left]} onPress={() => navigation.navigate('Fazendo', {deleteFazendoCard: true, titulo: titulo}) }>
                 <Text style={style.excluir}>Excluir</Text>
             </TouchableOpacity>
             <TouchableOpacity style={style.button} onPress={() => navigation.navigate('Fazendo', {fazendoParaAfazer: true, titulo: titulo, descricao: descricao})}>
-                <Text>A Fazer</Text>
+                <Text style={style.texto}>A Fazer</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={style.button} onPress={() => navigation.navigate('Fazendo', {fazendoParaFeito: true, titulo: titulo, descricao: descricao})}>
-                <Text>Feito</Text>
+            <TouchableOpacity style={[style.button, style.right]} onPress={() => navigation.navigate('Fazendo', {fazendoParaFeito: true, titulo: titulo, descricao: descricao})}>
+                <Text style={style.texto}>Feito</Text>
             </TouchableOpacity>
         </View>
     </View>
@@ -29,8 +31,7 @@ const style = StyleSheet.create({
     view: {
         alignSelf: "center",
         width: "90%",
-        height: 130,
-        padding: 15,
+        height: 144,
         borderRadius: 15,
         marginTop: 40,
         marginBottom: 10
@@ -52,15 +53,38 @@ const style = StyleSheet.create({
     },
     viewButtons: {
         width: "100%",
-        alignSelf: "right",
+        alignSelf: "center",
         flexDirection: "row"
     },
     button: {
         width: "33.33%",
-        textAlign: "right",
-        padding: 10
+        padding: 13,
+        backgroundColor: "#3557BD",
+    },
+    left: {
+        borderBottomLeftRadius: 10,
+        backgroundColor: "#FF4444",
+        borderColor: "#303030",
+        borderRightWidth: 1
+    },
+    right: {
+        borderBottomRightRadius: 10,
+        backgroundColor: "#3557BD",
+        borderColor: "#303030",
+        borderLeftWidth: 1
+    },
+    texto: {
+        alignSelf: "center",
+        fontWeight: "bold",
+        color: "white"
     },
     excluir: {
-        color: "red"
-    }
+        color: "white",
+        fontWeight: "bold",
+        alignSelf: "center"
+    },
+    tituloEDescricaoView: {
+        width: "100%",
+        padding: 15
+    },  
 });
