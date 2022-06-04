@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet, Text } from "react-native";
 import NavBar from "../../components/NavBar";
 import { useWindowDimensions} from "react-native";
-
+import SemDados from '../../components/SemDados';
 import { getData, storeData } from '../../../App';
 
 import Card from '../../components/CardFeito';
@@ -96,6 +96,7 @@ export default function Feito({route, navigation})
               data={cardsList}
               renderItem={({item}) => <Card titulo={item.Nome} descricao={item.Descricao} navigation={navigation}/>}
             />
+            <SemDados lista={cardsList}/>
           </View>
         );
     }

@@ -8,19 +8,44 @@ export default function CriarCard({navigation})
 {
     const [nome, onChangeNome] = React.useState("");
     const [descricao, onChangeDescricao] = React.useState("");
+    function ButtonCriar({nome})
+    {
+        if(nome!=null && nome!="" && descricao!=null && descricao!="")
+        {
+            return <TouchableOpacity onPress={
+                () => {
+                    getData("listaAFazer").then((result) => {
+                        var resultJSON = {"lista": []}
+                        if(result != null)
+                        {
+                            var resultJSON = JSON.parse(result)
+                        }
+                        resultJSON["lista"].push({"Nome": nome, "Descricao": descricao})
+                        storeData("listaAFazer", JSON.stringify(resultJSON))
+                        navigation.navigate("AFazer", {created: true, valorCriado: JSON.stringify(resultJSON)})
+                    })
+                }
+            }  style={style.button2}>
+                <Text style={style.text}>Criar</Text>
+            </TouchableOpacity>
+        }
+        return <TouchableOpacity style={style.button2}>
+            <Text style={style.text}>Criar</Text>
+        </TouchableOpacity>
+    }
     return <>
         <Bar/>
         <View style={style.viewCard}>
             <Text style={style.titulo}>CriarCard</Text>
             <TextInput
                 onChangeText={onChangeNome}
-                placeholder="Nome da atividade"
+                placeholder="Nome da atividade (obrigatoria)"
                 value={nome}
                 style={style.textInput}
             />
             <TextInput
                 onChangeText={onChangeDescricao}
-                placeholder="Descricao da atividade"
+                placeholder="Descricao (obrigatoria)"
                 value={descricao}
                 style={style.textInput}
             />
@@ -28,22 +53,7 @@ export default function CriarCard({navigation})
                 <TouchableOpacity onPress={()=> navigation.goBack()} style={style.button}>
                     <Text style={style.text}>Voltar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={
-                    () => {
-                        getData("listaAFazer").then((result) => {
-                            var resultJSON = {"lista": []}
-                            if(result != null)
-                            {
-                                var resultJSON = JSON.parse(result)
-                            }
-                            resultJSON["lista"].push({"Nome": nome, "Descricao": descricao})
-                            storeData("listaAFazer", JSON.stringify(resultJSON))
-                            navigation.navigate("AFazer", {created: true, valorCriado: JSON.stringify(resultJSON)})
-                        })
-                    }
-                }  style={style.button2}>
-                    <Text style={style.text}>Criar</Text>
-                </TouchableOpacity>
+                <ButtonCriar nome={nome}/>
             </View>
         </View>
     </>

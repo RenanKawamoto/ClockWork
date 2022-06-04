@@ -64,6 +64,7 @@ const style = StyleSheet.create({
     },
     left: {
         borderBottomLeftRadius: 10,
+        backgroundColor: "#24d810"
     },
     right: {
         borderBottomRightRadius: 10,

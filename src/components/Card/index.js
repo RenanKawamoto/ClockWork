@@ -73,7 +73,7 @@ const style = StyleSheet.create({
     },
     right: {
         borderBottomRightRadius: 10,
-        backgroundColor: "#3557BD",
+        backgroundColor: "#24d810",
         borderColor: "#303030",
         borderLeftWidth: 1
     },

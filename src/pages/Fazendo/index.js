@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, FlatList } from "react-native";
 import { useWindowDimensions} from "react-native";
 import NavBar from "../../components/NavBar";
-
+import SemDados from '../../components/SemDados';
 import { getData, storeData } from '../../../App';
 
 import Card from '../../components/CardFazendo';
@@ -124,6 +124,7 @@ export default function Fazendo({route, navigation})
               data={cardsList}
               renderItem={({item}) => <Card titulo={item.Nome} descricao={item.Descricao} navigation={navigation}/>}
             />
+            <SemDados lista={cardsList}/>
           </View>
         );
     }

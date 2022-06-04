@@ -4,6 +4,8 @@ import NavBar from "../../components/NavBar";
 import PlusButton from "./components/PlusButton";
 import { useWindowDimensions} from "react-native";
 
+import SemDados  from "../../components/SemDados"
+
 import { getData, storeData } from '../../../App';
 
 import Card from '../../components/Card';
@@ -89,7 +91,7 @@ export default function AFazer({route, navigation})
     catch(e)
     {
     }
-    console.log(cardsList)
+    console.log(cardsList);
     const FlatListBasics = () => {
         return (
           <View>
@@ -99,6 +101,7 @@ export default function AFazer({route, navigation})
               renderItem={({item}) => <Card titulo={item.Nome} descricao={item.Descricao} navigation={navigation}/>}
             />
             <PlusButton navigation={navigation}/>
+            <SemDados lista={cardsList}/>
           </View>
         );
     }
