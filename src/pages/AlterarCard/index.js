@@ -10,6 +10,43 @@ export default function AlterarCard({navigation, route})
     const descricaoAntiga = route.params['descricaoAntiga']
     const [nome, onChangeNome] = React.useState("");
     const [descricao, onChangeDescricao] = React.useState("");
+    function ButtonAlterar()
+    {
+        if(nome!=null && nome!="" && descricao!=null && descricao!="")
+        {
+            return<TouchableOpacity title="Criar" onPress={
+                () => {
+                    getData("listaAFazer").then((result) => {
+                        var lista = []
+                        if(JSON.parse(result) != null)
+                        {
+                            lista = JSON.parse(result).lista;
+                        }
+                        for(var i = 0; i < lista.length; i++)
+                        {
+                            if(lista[i].Nome == titulo)    
+                            {
+                                lista.splice(i, 1)
+                                lista.splice(i, 0, {"Nome": nome, "Descricao": descricao})
+                            }
+                        }
+                        storeData("listaAFazer", JSON.stringify({lista: lista}))
+                        navigation.navigate("AFazer", {created: true, valorCriado: JSON.stringify({lista: lista})})
+                    })
+                }
+                
+            } style={style.button2}>
+                <Text style={style.text}>
+                    Salvar
+                </Text>
+            </TouchableOpacity>
+        }
+        return <TouchableOpacity title="Criar" style={style.button2}>
+            <Text style={style.text}>
+                Salvar
+            </Text>
+        </TouchableOpacity>
+    }
     return <>
         <Bar/>
         <View style={style.viewCard}>
@@ -32,32 +69,7 @@ export default function AlterarCard({navigation, route})
                 <TouchableOpacity title="Voltar" onPress={()=> navigation.goBack()} style={style.button}>
                     <Text style={style.text}>Voltar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity title="Criar" onPress={
-                    () => {
-                        getData("listaAFazer").then((result) => {
-                            var lista = []
-                            if(JSON.parse(result) != null)
-                            {
-                                lista = JSON.parse(result).lista;
-                            }
-                            for(var i = 0; i < lista.length; i++)
-                            {
-                                if(lista[i].Nome == titulo)    
-                                {
-                                    lista.splice(i, 1)
-                                    lista.splice(i, 0, {"Nome": nome, "Descricao": descricao})
-                                }
-                            }
-                            storeData("listaAFazer", JSON.stringify({lista: lista}))
-                            navigation.navigate("AFazer", {created: true, valorCriado: JSON.stringify({lista: lista})})
-                        })
-                    }
-                    
-                } style={style.button2}>
-                    <Text style={style.text}>
-                        Salvar
-                    </Text>
-                </TouchableOpacity>
+                <ButtonAlterar />
             </View>
         </View>
 
